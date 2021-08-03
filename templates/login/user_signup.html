@@ -1,0 +1,33 @@
+{% extends 'index.html' %}
+{% block title %} Sign Up Page {% endblock %}
+{% block content %}
+        <div class="alert alert-warning alert-dismissible fade show text-center" role="alert">
+            <strong> NOTE!  </strong> Password would be send on your E-mail
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <main class="main">
+            <div class="container">
+                <section class="wrapper">
+                    <div class="heading">
+                        <h1 class="text text-large">Sign Up</h1>
+                        <p class="text text-normal">Create Your Account Here!<span>
+                        </p>
+                    </div>
+                    <form method="POST" name="login" class="form">
+                        {% csrf_token %}
+                        <br>
+                        <div class="input-control">
+                            <label for="email" class="input-label" hidden>Email Address</label>
+                            <input type="email" name="un" class="input-field" placeholder="Email Address" required>
+                        </div>
+                        <br>
+                        <div class="input-control">
+                            <a href="#" class="text text-links"> </a>
+                            <input type="submit" name="submit" class="input-submit" value="Sign Up">
+                        </div>
+                    </form>
+                    <center> {{ msg }} </center>
+                </section>
+            </div>
+        </main>
+{% endblock %}

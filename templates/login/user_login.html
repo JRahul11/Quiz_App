@@ -1,0 +1,46 @@
+{% extends 'index.html' %}
+{% block title %} Login Page {% endblock %}
+{% block content %}
+<main class="main">
+            <div class="container">
+                <section class="wrapper">
+                    <div class="heading">
+                        <h1 class="text text-large">Log In</h1>
+                        <p class="text text-normal">New User? <span><a href="{% url 'user_signup' %}" class="text text-links">Create an account</a></span>
+                        </p>
+                    </div>
+                    <form method="POST" name="login" class="form">
+                        {% csrf_token %}
+                        <div class="input-control">
+                            <label for="email" class="input-label" hidden>Email Address</label>
+                            <input type="email" name="un" class="input-field" placeholder="Email Address" required>
+                        </div>
+                        <div class="input-control">
+                            <label for="password" class="input-label" hidden>Password</label>
+                            <input type="password" name="pw" class="input-field" placeholder="Password" required id="myInput">    
+                        </div>
+                        <div>
+                            <input type="checkbox" class="text text-normal" onclick="myFunction()"> Show Password
+                        </div>
+                        <br>
+                        <div class="input-control">
+                            <a href="{% url 'user_np' %}" class="text text-links"> Forgot Password </a>
+                            <input type="submit" name="submit" class="input-submit" value="Login" >
+                        </div>
+                    </form>
+                    <center>{{ msg }}</center>
+                </section>
+            </div>
+        </main>
+        <script>
+        function myFunction() 
+        {
+            var x = document.getElementById("myInput");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        }
+        </script>
+{% endblock %}

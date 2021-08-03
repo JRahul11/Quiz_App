@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %} New Quiz {% endblock %}
+
+{%block content %}
+
+<div class="row center-align">
+    <div class="col s12">
+
+      <form method="post" enctype="multipart/form-data" action="" role="form">
+        {% csrf_token %}
+        
+        <h3 class="title is-3">Create a new Quiz</h3>
+
+        <div class="input-field col s12">
+            {{ form.title }}
+            <label for="description">Title</label>
+        </div>
+
+        <div class="input-field col s12">
+          {{ form.description }}
+          <label for="description">Description</label>
+        </div>
+
+        <div class="field">
+          <p class="control">
+            <button style="margin-top:50px;" type="submit" value="login" class="btn backcl waves-effect waves-light">
+              Create new Quiz
+            </button>
+          </p>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

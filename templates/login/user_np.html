@@ -1,0 +1,29 @@
+{% extends 'index.html' %}
+{% block title %} Sign Up Page {% endblock %}
+{% block content %}
+        <main class="main">
+            <div class="container">
+                <section class="wrapper">
+                    <div class="heading">
+                        <h1 class="text text-large">Forgot Password</h1>
+                        <p class="text text-normal">Not Registered?<span><a href="{% url 'user_signup' %}" class="text text-links"> Create an account</a></span>
+                        </p>
+                    </div>
+                    <form method="POST" name="login" class="form">
+                        {% csrf_token %}
+                        <div class="input-control">
+                            <label for="email" class="input-label" hidden>Email Address</label>
+                            <input type="email" name="un" class="input-field" placeholder="Registered Email Address" required>
+                        </div>
+                        <br>
+                        <div class="input-control">
+                            <a href="#" class="text text-links"> </a>
+                            <input type="submit" name="submit" class="input-submit" value="Request">
+                        </div>
+                        <br>
+                    </form>
+                    <center> {{ msg }} </center>
+                </section>
+            </div>
+        </main>
+{% endblock %}

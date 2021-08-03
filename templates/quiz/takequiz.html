@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title %} Take Quiz {% endblock %}
+
+{%block content %}
+  <div class="section">
+  	<h4>{{ quiz.title }}</h4>
+  </div>
+
+  <div class="col s12" style="margin-left:130px;">
+    <form method="post" id="sectionform" action="{% url 'submitquiz' quiz.id %}" role="form" class="col s12">
+    {% csrf_token %}
+
+      {% for question in quiz.questions.all %}
+        <div class="col s12">
+          <br>
+          <p>{{ question.question_text }}</p>
+          <input type="hidden" name="question" value="{{ question.id }}">
+        </div>
+
+      {% for answer in question.answers.all %}
+        <div class="input col s12">
+          <label>
+            <input name="answer" type="checkbox" value="{{ answer.id }}">
+            <span>{{ answer.answer_text }}</span>
+          </label>
+        </div>
+      {% endfor %}
+      <br><div class="divider"></div>
+    {% endfor %}
+
+    <div class="col s12">
+      <center>
+        <button type="submit" style="margin-top:40px; margin-bottom:40px" value="login" class="btn backcl waves-effect waves-light" onclick="return confirm('Submit your responses?')">
+          Submit
+        </button>
+      </center>
+    </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

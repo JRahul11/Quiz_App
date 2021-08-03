@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %} Home Page {% endblock %}
+
+{%block content %}
+
+<h3 class="title is-3 center-align">Available Quizzes</h3>
+<div class="section">
+
+    {% for q in quiz %}
+	    <h4>{{ q.title }}</h4>
+        <a class="btn-2 pull-left btn waves-effect waves-light " href="{% url 'deletequiz' q.id %}" style="float: right; margin-right: 100px; margin-left: 20px;">Delete Quiz</a> 
+        <a class="btn-2 pull-left btn waves-effect waves-light " href="{% url 'takequiz' q.id %}" style="float: right; margin-right: 30px;">Take Quiz</a>
+        
+        <h6>{{ q.description }}</h6>
+        <br>
+	    <div class="divider"></div>
+    {% endfor %}
+    
+</div>
+
+{% endblock %}

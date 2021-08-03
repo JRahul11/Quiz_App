@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title %} Report {% endblock %}
+
+{% block content %}
+  <h3 class="title is-3 center-align">Answer Key</h3>
+  <div class="section">
+  	<h4>{{ quiz.title }}</h4>
+  </div>
+
+  <div class="col s12">
+    <form class="col s12">
+      {% csrf_token %}
+
+      {% for question in quiz.questions.all %}
+        <div class="col s12">
+          <br>
+          <p style="margin-left:130px;">{{ question.question_text }}</p>
+          <input type="hidden" name="question" value="{{ question.id }}">
+        </div>
+
+      {% for answer in question.answers.all %}
+        <div class="input col s12">
+          <label style="margin-left:130px;">
+            <input name="answer" type="checkbox" value="{{ answer.id }}" {% if answer.is_correct == True %}checked="checked"{% endif %}/>
+            <span>{{ answer.answer_text }}</span>
+          </label>          
+        </div>
+      {% endfor %}
+      <br>
+      <div class="divider"></div>
+    {% endfor %}
+    </form>
+  </div>
+  <center>
+  <div class="col s12">
+    <a class="btn waves-effect waves-light backcl" style="margin-top:30px; margin-bottom: 40px;" href="{% url 'home' %}">Go to Home</a>      
+  </div>
+  </center>
+</div>
+
+{% endblock %}
